@@ -5,13 +5,11 @@ import styles from './Main.module.css';
 export const Main = () => (
     <section className={styles._}>
         <input 
-            id={styles.checkbox} 
-            className={styles.checkbox} 
-            type="checkbox" 
+            id={styles.toggleall} 
+            className={styles.toggleAll} 
+            type="checkboox" 
         />
-        <label for={styles.checkbox}>Mark all as complete</label>
+        <label for={styles.label}>Mark all as complete</label>
         <List />
     </section>
 )
-
-export default Main;

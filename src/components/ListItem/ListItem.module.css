@@ -14,7 +14,116 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+.completed {
+	position: relative;
+	font-size: 24px;
+	border-bottom: 1px solid #ededed;
+}
 
+.completed:last-child {
+	border-bottom: none;
+}
+
+.completed.editing {
+	border-bottom: none;
+	padding: 0;
+}
+
+.completed.editing .edit {
+	display: block;
+	width: calc(100% - 43px);
+	padding: 12px 16px;
+	margin: 0 0 0 43px;
+}
+
+.completed.editing .view {
+	display: none;
+}
+
+.completed .toggle {
+	text-align: center;
+	width: 40px;
+	/* auto, since non-WebKit browsers doesn't support input styling */
+	height: auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin: auto 0;
+	border: none; /* Mobile Safari */
+	-webkit-appearance: none;
+	appearance: none;
+}
+
+.completed .toggle {
+	opacity: 0;
+}
+
+.completed .toggle + label {
+	/*
+		Firefox requires `#` to be escaped - https://bugzilla.mozilla.org/show_bug.cgi?id=922433
+		IE and Edge requires *everything* to be escaped to render, so we do that instead of just the `#` - https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/7157459/
+	*/
+	background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23949494%22%20stroke-width%3D%223%22/%3E%3C/svg%3E');
+	background-repeat: no-repeat;
+	background-position: center left;
+}
+
+.completed .toggle:checked + label {
+	background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%2359A193%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20fill%3D%22%233EA390%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22%2F%3E%3C%2Fsvg%3E');
+}
+
+.completed label {
+	word-break: break-all;
+	padding: 15px 15px 15px 60px;
+	display: block;
+	line-height: 1.2;
+	transition: color 0.4s;
+	font-weight: 400;
+	color: #484848;
+}
+
+.completed.completed label {
+	color: #949494;
+	text-decoration: line-through;
+}
+
+.completed .destroy {
+	display: none;
+	position: absolute;
+	top: 0;
+	right: 10px;
+	bottom: 0;
+	width: 40px;
+	height: 40px;
+	margin: auto 0;
+	font-size: 30px;
+	color: #949494;
+	transition: color 0.2s ease-out;
+}
+
+.completed .destroy:hover,
+.completed .destroy:focus {
+	color: #C18585;
+}
+
+.completed .destroy:after {
+	content: '×';
+	display: block;
+	height: 100%;
+	line-height: 1.1;
+}
+
+.completed:hover .destroy {
+	display: block;
+}
+
+.completed .edit {
+	display: none;
+}
+
+.completed.editing:last-child {
+	margin-bottom: -1px;
+}
 .new-todo {
 	padding: 16px 16px 16px 60px;
 	height: 65px;
@@ -29,7 +138,7 @@
 	border-top: 1px solid #e6e6e6;
 }
 
-.toggle-all {
+.toggleAll {
 	width: 1px;
 	height: 1px;
 	border: none; /* Mobile Safari */
@@ -39,7 +148,7 @@
 	bottom: 100%;
 }
 
-.toggle-all + label {
+.toggleAll + label {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -51,7 +160,7 @@
 	left: -0;
 }
 
-.toggle-all + label:before {
+.toggleAll + label:before {
 	content: '❯';
 	display: inline-block;
 	font-size: 22px;
@@ -61,43 +170,43 @@
 	transform: rotate(90deg);
 }
 
-.toggle-all:checked + label:before {
+.toggleAll:checked + label:before {
 	color: #484848;
 }
 
-.todo-list {
+.list {
 	margin: 0;
 	padding: 0;
 	list-style: none;
 }
 
-.todo-list li {
+.completed {
 	position: relative;
 	font-size: 24px;
 	border-bottom: 1px solid #ededed;
 }
 
-.todo-list li:last-child {
+.completed:last-child {
 	border-bottom: none;
 }
 
-.todo-list li.editing {
+.completed.editing {
 	border-bottom: none;
 	padding: 0;
 }
 
-.todo-list li.editing .edit {
+.completed.editing .edit {
 	display: block;
 	width: calc(100% - 43px);
 	padding: 12px 16px;
 	margin: 0 0 0 43px;
 }
 
-.todo-list li.editing .view {
+.completed.editing .view {
 	display: none;
 }
 
-.todo-list li .toggle {
+.completed .toggle {
 	text-align: center;
 	width: 40px;
 	/* auto, since non-WebKit browsers doesn't support input styling */
@@ -111,11 +220,11 @@
 	appearance: none;
 }
 
-.todo-list li .toggle {
+.completed .toggle {
 	opacity: 0;
 }
 
-.todo-list li .toggle + label {
+.completed .toggle + label {
 	/*
 		Firefox requires `#` to be escaped - https://bugzilla.mozilla.org/show_bug.cgi?id=922433
 		IE and Edge requires *everything* to be escaped to render, so we do that instead of just the `#` - https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/7157459/
@@ -125,11 +234,11 @@
 	background-position: center left;
 }
 
-.todo-list li .toggle:checked + label {
+.completed .toggle:checked + label {
 	background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%2359A193%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20fill%3D%22%233EA390%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22%2F%3E%3C%2Fsvg%3E');
 }
 
-.todo-list li label {
+.completed label {
 	word-break: break-all;
 	padding: 15px 15px 15px 60px;
 	display: block;
@@ -139,12 +248,12 @@
 	color: #484848;
 }
 
-.todo-list li.completed label {
+.completed.completed label {
 	color: #949494;
 	text-decoration: line-through;
 }
 
-.todo-list li .destroy {
+.completed .destroy {
 	display: none;
 	position: absolute;
 	top: 0;
@@ -158,27 +267,27 @@
 	transition: color 0.2s ease-out;
 }
 
-.todo-list li .destroy:hover,
-.todo-list li .destroy:focus {
+.completed .destroy:hover,
+.completed .destroy:focus {
 	color: #C18585;
 }
 
-.todo-list li .destroy:after {
+.completed .destroy:after {
 	content: '×';
 	display: block;
 	height: 100%;
 	line-height: 1.1;
 }
 
-.todo-list li:hover .destroy {
+.completed:hover .destroy {
 	display: block;
 }
 
-.todo-list li .edit {
+.completed .edit {
 	display: none;
 }
 
-.todo-list li.editing:last-child {
+.completed.editing:last-child {
 	margin-bottom: -1px;
 }
 

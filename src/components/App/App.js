@@ -1,11 +1,9 @@
 import {
   Page
-} from '../../components/index'
+} from '../../components/index';
 
-function App() {
+export const App = () => {
   return (
     <Page />
   );
 }
-
-export default App;
